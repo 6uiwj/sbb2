@@ -3,19 +3,23 @@
       layout:decorate="~{layout}">
 
 <div layout:fragment="content" class="container">
-    <h5 class="my-3 border-bottm pb-2">질문 등록</h5>
+    <h5 class="my-3 border-bottom pb-2">질문 등록</h5>
     <form th:action="@{/question/create}" method="post" th:object="${questionForm}">
+
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
             <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
         </div>
 
+        <!--공통 에러템플릿 -->
+        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
         <div class="mb-3">
             <label for = "subject" class="form-label">제목</label>
-            <input type="text" name="subject" id="subject" class="form-control">
+            <input type="text" th:field="*{subject}" id="subject" class="form-control">
         </div>
         <div class="mb-3">
             <label for = "content" class="form-label">내용</label>
-            <textarea id="content" name="content" class="form-control" rows="10"></textarea>
+            <textarea id="content" th:field="*{content}" class="form-control" rows="10"></textarea>
         </div>
 
         <input type="submit" value="저장하기" class="btn btn-primary my-2">

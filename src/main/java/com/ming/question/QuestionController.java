@@ -1,5 +1,6 @@
 package com.ming.question;
 
+import com.ming.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class QuestionController {
         //List<Question> questionList = this.questionRepository.findAll(); //질문 목록 전부 가져옴
 
         //서비스 이용하여 조회
-        List<Question> questionList = questionService.getList();
+        List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
         return "question_list";
     }
@@ -38,8 +39,8 @@ public class QuestionController {
      * @param id
      * @return
      */
-    @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
+    @GetMapping(value = "/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
