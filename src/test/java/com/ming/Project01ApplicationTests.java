@@ -2,6 +2,7 @@ package com.ming;
 
 import com.ming.question.Question;
 import com.ming.question.QuestionRepository;
+import com.ming.question.QuestionService;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +15,17 @@ import java.time.LocalDateTime;
 class Project01ApplicationTests {
 
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionService questionService;
 
-	@Transactional
 	@Test
 	void testJpa() {
-		Question q1 = new Question();
-		q1.setSubject("sbb 제목");
-		q1.setContent("sbb 내용");
-		q1.setCreateDate(LocalDateTime.now());
-		 this.questionRepository.save(q1);
 
-	 	Question q2 = new Question();
-		 q2.setSubject("sbb 제목2");
-		 q2.setContent("sbb 내용2");
-		 q2.setCreateDate(LocalDateTime.now());
-		 this.questionRepository.save(q2);
-
+		for(int i=1; i<=300; i++) {
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용 없음";
+			this.questionService.create(subject,content);
+			System.out.println("저장 됐니?");
+		}
 	}
 
 
