@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="{layout}">
+      layout:decorate="~{layout}">
 <div layout:fragment="content" class="container my-3">
     <div class="my-3 border-bottom">
         <div>
@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
             <label for = "password2" class="form-label">비밀번호 확인</label>
-            <input type="password" th:field="*{passoword2}" class="form-control">
+            <input type="password" th:field="*{password2}" class="form-control">
         </div>
         <div class="mb-3">
             <label for = "email" class="form-label">이메일</label>
