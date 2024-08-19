@@ -1,6 +1,7 @@
 package com.ming.answer;
 
 import com.ming.question.Question;
+import com.ming.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +24,6 @@ public class Answer {
 
     public LocalDateTime createDate;
 
+    @ManyToOne
+    public SiteUser author;
 }

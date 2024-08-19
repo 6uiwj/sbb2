@@ -1,10 +1,13 @@
 package com.ming.user;
 
+import com.ming.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +32,13 @@ public class UserService {
         return user;
 
 
+    }
+
+    public SiteUser getUser (String username) {
+        Optional<SiteUser> siteUser = this.userRepository.findByUsername(username);
+        if(siteUser.isPresent()) {
+            return siteUser.get();
+        } else
+            throw new DataNotFoundException("siteuser not found");
     }
 }
