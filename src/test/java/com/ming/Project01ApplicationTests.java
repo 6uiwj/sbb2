@@ -23,7 +23,7 @@ class Project01ApplicationTests {
 		for(int i=1; i<=300; i++) {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용 없음";
-			this.questionService.create(subject,content);
+			//this.questionService.create(subject,content);
 			System.out.println("저장 됐니?");
 		}
 	}
