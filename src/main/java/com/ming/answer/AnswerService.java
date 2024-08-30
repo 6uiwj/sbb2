@@ -53,4 +53,12 @@ public class AnswerService {
         answer.setModifyDate(LocalDateTime.now());
         this.answerRepository.save(answer);
     }
+
+    /**
+     * 삭제
+     * @param answer
+     */
+    public void delete(Answer answer) {
+        this.answerRepository.delete(answer);
+    }
 }
